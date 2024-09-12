@@ -1,0 +1,19 @@
+import { configureStore } from '@reduxjs/toolkit';
+import authSliceReducer from './slices/authSlice';
+import dataSliceReducer from './slices/dataSlice';
+
+const store = configureStore({
+  reducer: {
+    auth: authSliceReducer,
+    data: dataSliceReducer,
+  },
+  middleware: (getDefaultMiddleware) =>
+    getDefaultMiddleware({
+      serializableCheck: false,
+    }),
+});
+
+export type RootState = ReturnType<typeof store.getState>;
+export type AppDispatch = typeof store.dispatch;
+
+export default store;
